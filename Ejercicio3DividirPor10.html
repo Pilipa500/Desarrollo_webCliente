@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dividir por 10</title>
+</head>
+
+<body>
+    <script>
+        /*Pedir un número a un usuario a través de un prompt y luego dividirlo por 10,
+         ejemplo: 5 / 10 igual 0.5*/
+        //solicitar al usuario que ingrese un número
+        var ingresaNumero = prompt("Dame un numero y lo dividiré por 10, dándote el resultado");
+        //paso el mensaje a numero, parseandolo
+        var ingresaNumero = parseFloat(ingresaNumero);
+        //ahora lo divido por 10 
+        var resultado = ingresaNumero / 10;
+
+        //y muestro el resultado
+        alert("El resultado de dividir " + ingresaNumero + "por 10 es: " + resultado);
+
+    </script>
+</body>
+
+</html>
