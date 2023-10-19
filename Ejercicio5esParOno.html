@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es par o no?</title>
+</head>
+
+<body>
+    <script>
+        //pido al usuario que me de un numero
+        var ingresaNumero = prompt("Por favor, dame un número y te diré si es par o no")
+        //paso el mensaje a número
+        ingresaNumero = parseFloat(ingresaNumero);
+        //hago la operación para saber si es par o no
+        if (ingresaNumero % 2 === 0) {
+            /*El operador % (módulo) se utiliza en el if para 
+            verificar si un número es par o impar debido a cómo funciona la aritmética
+            modular. Cuando divides un número por 2 utilizando el operador %, obtendrás 
+            el resto de esa división. En el caso de números pares, el resto de la división
+            por 2 siempre será 0, mientras que en el caso de números impares, el resto será 1.*/
+            alert("El numero " + ingresaNumero + " es par.");
+        } else {
+            alert("El numero " + ingresaNumero + " es impar.");
+        }
+    </script>
+</body>
+
+</html>
