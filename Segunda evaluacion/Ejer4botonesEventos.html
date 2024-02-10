@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos con JavaScript</title>
+    <!-- Crea una página web con un botón que capture los eventos click,
+mouseover y mouseout. Añade otro botón en el que al hacer clic se vayan
+eliminando los eventos capturados del primer botón. -->
+    <style>
+        /* Estilos opcionales para resaltar el botón */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="eventButton">Capturar Eventos</button>
+    <button id="clearButton">Eliminar Eventos</button>
+
+    <script>
+        // Función para capturar eventos
+        function capturarEventos() {
+            // Función que maneja el evento click
+            function handleClick() {
+                console.log('Se hizo clic en el botón.');
+            }
+
+            // Función que maneja el evento mouseover
+            function ratonSobreBoton() {
+                console.log('El ratón está sobre el botón.');
+            }
+
+            // Función que maneja el evento mouseout
+            function ratonFueraBoton() {
+                console.log('El ratón salió del botón.');
+            }
+
+            // Seleccionar el botón
+            var button = document.getElementById('eventButton');
+
+            // Agregar event listeners para los eventos
+            button.addEventListener('click', handleClick);
+            button.addEventListener('mouseover', ratonSobreBoton);
+            button.addEventListener('mouseout', ratonFueraBoton);
+        }
+
+        // Función para eliminar eventos
+        function eliminarEventos() {
+            // Seleccionar el botón
+            var button = document.getElementById('eventButton');
+
+            // Remover todos los event listeners del botón
+            button.removeEventListener('click', handleClick);
+            button.removeEventListener('mouseover', ratonSobreBoton);
+            button.removeEventListener('mouseout', ratonFueraBoton);
+
+            console.log('Eventos eliminados.');
+        }
+
+        // Asociar la función de capturar eventos al botón correspondiente
+        document.getElementById('eventButton').addEventListener('click', capturarEventos);
+
+        // Asociar la función de eliminar eventos al botón correspondiente
+        document.getElementById('clearButton').addEventListener('click', eliminarEventos);
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de números</title>
+    <!-- En una web debe haber un formulario con un input type text. Al pulsar
+un botón, se deberá validar lo que hay en el input type text, el cual solo
+podrá contener números.
+Si es válido, se mostrará en una etiqueta junto al input type text el
+resultado de sumar todos los números que contiene el input.
+Para hacer el ejercicio, crea un método que realice lo que se pide y que
+devuelva la suma o -1 si no se ha validado el input (es decir, que contiene
+algo que no sea un número). -->
+
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form id="myForm">
+        <label for="numberInput">Ingrese números separados por comas:</label>
+        <input type="text" id="numberInput" name="numbers">
+        <button type="button" id="submitButton">Calcular suma</button>
+        <p id="result"></p>
+        <p id="error" class="error"></p>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('submitButton').addEventListener('click', function() {
+                var numbersInput = document.getElementById('numberInput').value;
+                var resultParagraph = document.getElementById('result');
+                var errorParagraph = document.getElementById('error');
+                var sum = sumNumbers(numbersInput);
+                
+                if (sum !== -1) {
+                    resultParagraph.textContent = 'La suma de los números es: ' + sum;
+                    errorParagraph.textContent = '';
+                } else {
+                    resultParagraph.textContent = '';
+                    errorParagraph.textContent = 'Error: Por favor, ingrese solo números separados por comas.';
+                }
+            });
+        });
+
+        function sumNumbers(inputString) {
+            var numbersArray = inputString.split(',').map(Number);
+            var sum = 0;
+
+            for (var i = 0; i < numbersArray.length; i++) {
+                if (isNaN(numbersArray[i])) {
+                    return -1; // Retorna -1 si hay algún valor no numérico
+                }
+                sum += numbersArray[i];
+            }
+
+            return sum;
+        }
+    </script>
+</body>
+</html>

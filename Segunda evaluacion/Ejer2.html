@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario con Array en JavaScript</title>
+</head>
+<!-- En un formulario habrá un input text.
+Al escribir sobre el input text y pulsar la tecla INTRO, iremos añadiendo
+elementos a un array y lo que hay en el input se borrará.
+Cada vez que añadamos un elemento al array, se mostrará por pantalla el
+contenido del mismo en una lista no ordenada, de manera que el último
+elemento añadido aparezca el primero. -->
+<body>
+  <h2>Formulario con Array</h2>
+  <input type="text" id="inputText" placeholder="Escribe y pulsa INTRO">
+  <ul id="listaElementos"></ul>
+
+  <script>
+    // Array para almacenar los elementos
+    let elementos = [];
+
+    // Función para añadir un elemento a la lista y al array
+    function agregarElemento() {
+      const input = document.getElementById('inputText');
+      const valor = input.value.trim(); // Obtener el valor del input eliminando espacios en blanco al inicio y al final
+
+      if (valor !== '') {
+        // Añadir el elemento al principio del array
+        elementos.unshift(valor);
+
+        // Limpiar el contenido del input
+        input.value = '';
+
+        // Actualizar la lista de elementos
+        mostrarElementos();
+      }
+    }
+
+    // Función para mostrar los elementos en la lista HTML
+    function mostrarElementos() {
+      const lista = document.getElementById('listaElementos');
+      lista.innerHTML = ''; // Limpiar la lista
+
+      // Iterar sobre el array de elementos y agregarlos a la lista HTML
+      elementos.forEach(elemento => {
+        const li = document.createElement('li');
+        li.textContent = elemento;
+        lista.appendChild(li);
+      });
+    }
+
+    // Manejador de evento para la tecla INTRO en el input
+    document.getElementById('inputText').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        agregarElemento();
+      }
+    });
+  </script>
+</body>
+</html>

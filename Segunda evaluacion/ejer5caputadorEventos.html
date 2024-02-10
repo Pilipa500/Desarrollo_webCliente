@@ -1,0 +1,64 @@
+<!-- <script>
+    let persona={
+        name:['Rafael', 'Nadal'],
+        age: 33,
+        categoria: 'masculina',
+        aficiones:['tenis', 'restaurantes'],
+        bio: function(){
+            alert(this.name[0] + ' ' + this.name[1] + ' tiene '
+             + this.age + ' años y le gusta el ' + this.aficiones[0] + ' y el '+
+             
+             this.aficiones[1] + '.');
+        },
+        saludo: function(){
+                    alert('Hola me llamo ' + this.name[0] + ' ' + ' tengo ' +
+                    this.name[1] + ' .');
+        }
+        };
+    
+</script> -->
+<script>
+    let persona = {
+        name: ['Rafael', 'Nadal'],
+        age: 33,
+        categoria: 'masculina',
+        aficiones: ['tenis', 'restaurantes'],
+        bio: () => {
+            alert(`${persona.name[0]} ${persona.name[1]} tiene ${persona.age} años y le gusta el ${persona.aficiones[0]} y los ${persona.aficiones[1]}.`);
+        },
+        saludo: () => {
+            alert(`Hola me llamo ${persona.name[0]} ${persona.name[1]} tengo ${persona.age} años.`);
+        }
+    };
+
+    // b) Crear un par de botones y capturar sus eventos click para que cada uno ejecute uno de los métodos del objeto.
+    document.addEventListener("DOMContentLoaded", () => {
+        let btnBio = document.getElementById('btnBio');
+        let btnSaludo = document.getElementById('btnSaludo');
+
+        btnBio.addEventListener('click', () => {
+            persona.bio();
+        });
+
+        btnSaludo.addEventListener('click', () => {
+            persona.saludo();
+        });
+    });
+
+    // e) Guardar el JSON en el almacenamiento del cliente y recuperarlo en una página diferente.
+    // Para esto, necesitaríamos trabajar con el Local Storage o alguna forma de almacenamiento persistente del lado del cliente.
+    // Guardar el objeto persona en el Local Storage
+localStorage.setItem('persona', JSON.stringify(persona));
+
+// Recuperar el objeto persona del Local Storage en otra página
+let personaRecuperada = JSON.parse(localStorage.getItem('persona'));
+console.log(personaRecuperada); // Esto imprimirá el objeto persona en la consola
+console.log(personaRecuperada.name); // Imprimirá el nombre de la persona recuperada
+console.log(personaRecuperada.age); // Imprimirá la edad de la persona recuperada
+// Y así sucesivamente para los otros atributos de la persona
+
+
+</script>
+
+<button id="btnBio">Mostrar Bio</button>
+<button id="btnSaludo">Mostrar Saludo</button>

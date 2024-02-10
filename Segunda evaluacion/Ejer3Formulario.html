@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <!-- Se va a pedir por formulario: email, contraseña y repite contraseña.
+No se podrá copiar y pegar en los campos de contraseña. Existirá un
+botón ‘validar’ que comprobará que el email sea correcto y que las
+contraseñas sean correctas e iguales. Las contraseñas serán correctas
+siempre que incluyan minúsculas, mayúsculas, números y algún carácter
+especial, no pudiendo tener una longitud inferior a 6 caracteres -->
+    <style>
+        /* Estilos opcionales para mejorar la apariencia del formulario */
+        input[type="text"], input[type="password"] {
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <h2>Formulario de Registro</h2>
+    <form id="registrationForm">
+        <div>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <span id="emailError" class="error"></span>
+        </div>
+        <div>
+            <label for="password">Contraseña:</label><br>
+            <input type="password" id="password" name="password"><br>
+        </div>
+        <div>
+            <label for="confirmPassword">Repite Contraseña:</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword"><br>
+            <span id="passwordError" class="error"></span>
+        </div>
+        <button type="button" id="validateButton">Validar</button>
+    </form>
+
+    <script>
+        // Función para validar el formato del correo electrónico
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Función para validar la contraseña
+        function validatePassword(password) {
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&=])[A-Za-z\d@$!%*?&=]{6,}$/;
+            return passwordRegex.test(password);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const emailErrorSpan = document.getElementById('emailError');
+            const passwordErrorSpan = document.getElementById('passwordError');
+            const validateButton = document.getElementById('validateButton');
+
+            // Evitar copiar y pegar en los campos de contraseña
+            passwordInput.addEventListener('copy', function(event) {
+                event.preventDefault();
+            });
+
+            passwordInput.addEventListener('paste', function(event) {
+                event.preventDefault();
+            });
+
+            confirmPasswordInput.addEventListener('copy', function(event) {
+                event.preventDefault();
+            });
+
+            confirmPasswordInput.addEventListener('paste', function(event) {
+                event.preventDefault();
+            });
+
+            validateButton.addEventListener('click', function() {
+                // Reiniciar mensajes de error
+                emailErrorSpan.textContent = '';
+                passwordErrorSpan.textContent = '';
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                // Validar el formato del correo electrónico
+                if (!validateEmail(email)) {
+                    emailErrorSpan.textContent = 'El correo electrónico no es válido.';
+                    return;
+                }
+
+                // Validar las contraseñas
+                if (password !== confirmPassword) {
+                    passwordErrorSpan.textContent = 'Las contraseñas no coinciden.';
+                    return;
+                }
+
+                if (!validatePassword(password)) {
+                    passwordErrorSpan.textContent = 'La contraseña no cumple con los requisitos.';
+                    return;
+                }
+
+                // Si todo está bien, podrías enviar el formulario aquí
+                // Por ejemplo, con AJAX o redireccionando a otra página
+                alert('¡Formulario validado correctamente!');
+            });
+        });
+    </script>
+</body>
+</html>
