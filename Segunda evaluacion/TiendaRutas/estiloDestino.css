@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  #destinos {
+    float: left;
+    width: 40%;
+    padding: 20px;
+  }
+  #ruta {
+    float: right;
+    width: 50%;
+    padding: 20px;
+  }
+  .destino {
+    margin-bottom: 20px;
+  }
+  .destino img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+   
+  }
+  .destino-info {
+    margin-top: 10px;
+  }
+  .ruta-item {
+    margin-bottom: 10px;
+  }

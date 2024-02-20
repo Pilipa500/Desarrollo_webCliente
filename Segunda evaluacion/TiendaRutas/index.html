@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerario de Viaje por Andalucía</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    #destinos {
+      float: left;
+      width: 40%;
+      padding: 20px;
+    }
+    #ruta {
+      float: right;
+      width: 50%;
+      padding: 20px;
+    }
+    .destino {
+      margin-bottom: 20px;
+    }
+    .destino img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+    .destino-info {
+      margin-top: 10px;
+    }
+    .ruta-item {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="destinos">
+    <h2>Destinos en Andalucía</h2>
+    <div class="destino">
+      <img src="Sevilla.png" alt="Destino 1">
+      <div class="destino-info">
+        <h3>Destino 1</h3>
+        <p>Información sobre el destino 1.</p>
+        <button onclick="agregarDestino(1)">Añadir a la Ruta</button>
+      </div>
+    </div>
+    
+
+    <!--A partir de aquí sumatorios de rutas---------------------------------->
+  <div id="ruta">
+    <h2>Itinerario de Viaje</h2>
+    <div id="ruta-items">
+      <!-- Aquí se agregarán los destinos seleccionados -->
+    </div>
+    <div id="resumen">
+      <h3>Resumen</h3>
+      <p>Total de días: <span id="total-dias">0</span></p>
+      <p>Total de costos: <span id="total-costos">0</span> euros</p>
+    </div>
+  </div>
+
+</body>
+
+</html>

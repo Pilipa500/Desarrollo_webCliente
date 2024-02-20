@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerario de Viaje por Andalucía</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    #destinos {
+      float: left;
+      width: 40%;
+      padding: 20px;
+    }
+    #ruta {
+      float: right;
+      width: 50%;
+      padding: 20px;
+    }
+    .destino {
+      margin-bottom: 20px;
+    }
+    .destino img {
+      max-width: 100%;
+      height: auto;
+    }
+    .destino-info {
+      margin-top: 10px;
+    }
+    .ruta-item {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="destinos">
+    <h2>Destinos en Andalucía</h2>
+    <div class="destino">
+      <img src="ruta_a_imagen_destino1.jpg" alt="Destino 1">
+      <div class="destino-info">
+        <h3>Destino 1</h3>
+        <p>Información sobre el destino 1.</p>
+        <button onclick="agregarDestino(1)">Añadir a la Ruta</button>
+      </div>
+    </div>
+    <!-- Aquí se repiten los bloques .destino para otros destinos -->
+  </div>
+
+  <div id="ruta">
+    <h2>Itinerario de Viaje</h2>
+    <div id="ruta-items">
+      <!-- Aquí se agregarán los destinos seleccionados -->
+    </div>
+    <div id="resumen">
+      <h3>Resumen</h3>
+      <p>Total de días: <span id="total-dias">0</span></p>
+      <p>Total de costos: <span id="total-costos">0</span> euros</p>
+    </div>
+  </div>
+
+  <script>
+    let ruta = [];
+    let totalDias = 0;
+    let totalCostos = 0;
+
+    function agregarDestino(destinoId) {
+      // Simulación de obtener información del destino desde una base de datos o alguna fuente de datos
+      let destino = {
+        id: destinoId,
+        nombre: `Destino ${destinoId}`,
+        costo: Math.floor(Math.random() * 100) + 50, // Precio aleatorio entre 50 y 150 euros
+        dias: Math.floor(Math.random() * 5) + 1 // Número aleatorio de días entre 1 y 5
+      };
+
+      // Agregar el destino a la ruta
+      ruta.push(destino);
+
+      // Actualizar la interfaz de usuario
+      actualizarInterfaz();
+    }
+
+    function eliminarDestino(index) {
+      ruta.splice(index, 1);
+      actualizarInterfaz();
+    }
+
+    function actualizarInterfaz() {
+      let rutaItems = document.getElementById('ruta-items');
+      let resumenTotalDias = document.getElementById('total-dias');
+      let resumenTotalCostos = document.getElementById('total-costos');
+
+      rutaItems.innerHTML = '';
+      totalDias = 0;
+      totalCostos = 0;
+
+      ruta.forEach((destino, index) => {
+        let item = document.createElement('div');
+        item.classList.add('ruta-item');
+        item.innerHTML = `
+          <p><strong>${destino.nombre}</strong> - ${destino.dias} días - ${destino.costo} euros</p>
+          <button onclick="eliminarDestino(${index})">Eliminar</button>
+        `;
+        rutaItems.appendChild(item);
+
+        totalDias += destino.dias;
+        totalCostos += destino.costo;
+      });
+
+      resumenTotalDias.textContent = totalDias;
+      resumenTotalCostos.textContent = totalCostos;
+    }
+  </script>
+</body>
+</html>
